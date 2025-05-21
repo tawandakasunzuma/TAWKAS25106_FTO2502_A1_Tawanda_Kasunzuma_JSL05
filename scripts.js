@@ -65,6 +65,9 @@ function openTaskModal(task) {
   const descInput = document.getElementById("task-desc");
   const statusSelect = document.getElementById("task-status");
 
+  const modalHeading = document.querySelector(".modal-heading");
+  modalHeading.textContent = "Add New Task";
+
   titleInput.value = task.title;
   descInput.value = task.description;
   statusSelect.value = task.status;
@@ -97,7 +100,56 @@ function initTaskBoard() {
     NEW
 ====================*/
 
+/**
+ * Add new task
+ */
+function addNewTask() {
+  const addNewTaskBtn = document.getElementById("task-add-btn");
+  const modal = document.getElementById("task-modal");
+  const modalHeading = document.querySelector(".modal-heading");
+  const titleInput = document.getElementById("task-title");
+  const descInput = document.getElementById("task-desc");
+  const statusSelect = document.getElementById("task-status");
 
+  let id = 6;
+  
+  // Open blank model
+  addNewTaskBtn.addEventListener("click", () => {
+    modalHeading.textContent = "Add New Task";
+
+    titleInput.value = "";
+    titleInput.setAttribute("placeholder","e.g. Take coffee break");
+    descInput.value = "";
+    descInput.setAttribute("placeholder","e.g. Pet your dog, have a cup of coffee, dance to your favorite song and come back to crush this challenge.")
+    
+    modal.showModal();
+  })
+
+  // Handle form submission
+
+  const form = document.getElementById("task-form");
+  
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    
+    const newTitle = titleInput.value;
+    const newDesc = descInput.value;
+    const newStatus = statusSelect.value;
+    
+    initialTasks.push(
+        {
+            id: id++,
+            title: newTitle,
+            description: newDesc,
+            status: newStatus,
+        }
+    )
+    modal.close();
+
+  })
+}
+
+addNewTask()
 
 /*====================
 ====================*/

@@ -379,14 +379,6 @@ form select {
     font-size: 1rem;
   }
 
-  #task-add-btn {
-    padding: 0.875em 1.175em;
-  }
-
-  .hide-add-task-text {
-    display: none;
-  }
-
   .task-div {
     width: 100%;
   }
@@ -421,4 +413,13 @@ form select {
   .column-div {
     padding: 24px;
   }
+
+  #task-add-btn {
+    padding: 0.875em 1.175em;
+  }
+
+  .hide-add-task-text {
+    display: none;
+  }
+
 }
