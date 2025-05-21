@@ -93,5 +93,14 @@ function initTaskBoard() {
   setupModalCloseHandler();
 }
 
+/*====================
+    NEW
+====================*/
+
+
+
+/*====================
+====================*/
+
 // Wait until DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initTaskBoard);
+document.addEventListener("DOMContentLoaded", initTaskBoard); 

@@ -112,11 +112,25 @@ header {
 
 .header-name-div {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .logo-mobile {
   display: none; /* Hidden on desktop; shown on smaller screens */
+}
+
+#task-add-btn {
+    background-color: #635FC7;
+    color: #ffffff;
+    border: none;
+    padding: 1em 1.5em;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
 }
 
 /* ===============
@@ -363,6 +377,14 @@ form select {
 
   #header-board-name {
     font-size: 1rem;
+  }
+
+  #task-add-btn {
+    padding: 0.875em 1.175em;
+  }
+
+  .hide-add-task-text {
+    display: none;
   }
 
   .task-div {
