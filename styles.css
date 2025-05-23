@@ -239,11 +239,13 @@ dialog {
 }
 
 /* Style the modal box */
-#task-modal::backdrop {
+#task-modal::backdrop,
+#new-task-modal::backdrop {
   background: rgba(0, 0, 0, 0.3);
 }
 
-#task-modal {
+#task-modal,
+#new-task-modal {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -40%);
@@ -254,6 +256,19 @@ dialog {
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   /*font-family: "Plus Jakarta Sans", sans-serif;*/
+}
+
+#add-new-task-btn {
+  font-weight: 700;
+  font-size: 13px;
+  background-color: #635FC7;
+  color: #ffffff;
+  border-radius: 1.25rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem 0;
+  border: none;
+  cursor: pointer;
 }
 
 /* Header */
@@ -379,6 +394,14 @@ form select {
     font-size: 1rem;
   }
 
+  #task-add-btn {
+    padding: 0.875em 1.175em;
+  }
+
+  .hide-add-task-text {
+    display: none;
+  }
+
   .task-div {
     width: 100%;
   }
@@ -413,13 +436,4 @@ form select {
   .column-div {
     padding: 24px;
   }
-
-  #task-add-btn {
-    padding: 0.875em 1.175em;
-  }
-
-  .hide-add-task-text {
-    display: none;
-  }
-
 }
