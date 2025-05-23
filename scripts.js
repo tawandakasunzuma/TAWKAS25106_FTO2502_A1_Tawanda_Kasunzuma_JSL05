@@ -65,9 +65,6 @@ function openTaskModal(task) {
   const descInput = document.getElementById("task-desc");
   const statusSelect = document.getElementById("task-status");
 
-  const modalHeading = document.querySelector(".modal-heading");
-  modalHeading.textContent = "Add New Task";
-
   titleInput.value = task.title;
   descInput.value = task.description;
   statusSelect.value = task.status;
@@ -76,11 +73,13 @@ function openTaskModal(task) {
 }
 
 /**
- * Sets up modal close behavior.
+ * Sets up close behavior for any modal and its associated close button.
+ * @param {string} modalId - The ID of the modal element.
+ * @param {string} closeBtnId - The ID of the button that closes the modal.
  */
-function setupModalCloseHandler() {
-  const modal = document.getElementById("task-modal");
-  const closeBtn = document.getElementById("close-modal-btn");
+function setupModalCloseHandler(modalId,closeBtnId) {
+  const modal = document.getElementById(modalId);
+  const closeBtn = document.getElementById(closeBtnId);
 
   closeBtn.addEventListener("click", () => {
     modal.close();
@@ -93,63 +92,60 @@ function setupModalCloseHandler() {
 function initTaskBoard() {
   clearExistingTasks();
   renderTasks(initialTasks);
-  setupModalCloseHandler();
+  setupModalCloseHandler("task-modal", "close-modal-btn");
+  setupModalCloseHandler("new-task-modal", "new-close-modal-btn");
 }
 
 /*====================
     NEW
 ====================*/
 
-/**
- * Add new task
- */
-function addNewTask() {
-  const addNewTaskBtn = document.getElementById("task-add-btn");
-  const modal = document.getElementById("task-modal");
-  const modalHeading = document.querySelector(".modal-heading");
-  const titleInput = document.getElementById("task-title");
-  const descInput = document.getElementById("task-desc");
-  const statusSelect = document.getElementById("task-status");
+const taskAddBtn = document.getElementById("task-add-btn");
 
-  let id = 6;
-  
-  // Open blank model
-  addNewTaskBtn.addEventListener("click", () => {
-    modalHeading.textContent = "Add New Task";
+taskAddBtn.addEventListener("click",() => {
+  console.log('Yes');
+  openNewTaskModal();
+})
 
-    titleInput.value = "";
-    titleInput.setAttribute("placeholder","e.g. Take coffee break");
-    descInput.value = "";
-    descInput.setAttribute("placeholder","e.g. Pet your dog, have a cup of coffee, dance to your favorite song and come back to crush this challenge.")
-    
-    modal.showModal();
-  })
+let nextTaskId = 6;
 
-  // Handle form submission
-
-  const form = document.getElementById("task-form");
-  
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    
-    const newTitle = titleInput.value;
-    const newDesc = descInput.value;
-    const newStatus = statusSelect.value;
-    
-    initialTasks.push(
-        {
-            id: id++,
-            title: newTitle,
-            description: newDesc,
-            status: newStatus,
-        }
-    )
-    modal.close();
-
-  })
+function openNewTaskModal() {
+  const newModal = document.getElementById("new-task-modal");
+  newModal.showModal()
 }
 
-addNewTask()
+function handleNewTaskSubmission () {
+
+  const newTitleInput = document.getElementById("new-task-title");
+  const newDescInput = document.getElementById("new-task-desc");
+  const newStatusSelect = document.getElementById("new-task-status");
+
+  // Add new task to array
+  initialTasks.push(
+    {
+      id: nextTaskId++,
+      title: newTitleInput.value,
+      description: newDescInput.value,
+      status: newStatusSelect.value
+    }
+  )
+  // Close modal
+  document.getElementById("new-task-modal").close();
+  // Clear fields
+  newTitleInput.value = "";
+  newDescInput.value = "";
+  newStatusSelect.value = "todo";
+
+  // Rerender
+  clearExistingTasks();
+  renderTasks(initialTasks);
+}
+
+// Add new task by submitting
+document.getElementById("new-task-form").addEventListener("submit",(event) => {
+  event.preventDefault();
+  handleNewTaskSubmission();
+})
 
 /*====================
 ====================*/
