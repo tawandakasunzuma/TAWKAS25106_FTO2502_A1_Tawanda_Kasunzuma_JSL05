@@ -1,5 +1,10 @@
 import { initialTasks } from "./initialData.js";
 
+if (!localStorage.getItem("storedTasks")) {
+  localStorage.setItem("storedTasks",JSON.stringify(initialTasks));
+}
+
+const storedTasks = JSON.parse(localStorage.getItem("storedTasks")) || [];
 /**
  * Creates a single task DOM element.
  * @param {Object} task - Task data object.
@@ -91,7 +96,7 @@ function setupModalCloseHandler(modalId,closeBtnId) {
  */
 function initTaskBoard() {
   clearExistingTasks();
-  renderTasks(initialTasks);
+  renderTasks(storedTasks);
   setupModalCloseHandler("task-modal", "close-modal-btn");
   setupModalCloseHandler("new-task-modal", "new-close-modal-btn");
 }
@@ -121,7 +126,7 @@ function handleNewTaskSubmission () {
   const newStatusSelect = document.getElementById("new-task-status");
 
   // Add new task to array
-  initialTasks.push(
+  storedTasks.push(
     {
       id: nextTaskId++,
       title: newTitleInput.value,
@@ -129,6 +134,10 @@ function handleNewTaskSubmission () {
       status: newStatusSelect.value
     }
   )
+
+  // Save new into localStorage
+  localStorage.setItem("storedTasks",JSON.stringify(storedTasks));
+
   // Close modal
   document.getElementById("new-task-modal").close();
   // Clear fields
@@ -138,7 +147,7 @@ function handleNewTaskSubmission () {
 
   // Rerender
   clearExistingTasks();
-  renderTasks(initialTasks);
+  renderTasks(storedTasks);
 }
 
 // Add new task by submitting
