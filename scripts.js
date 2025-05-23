@@ -5,6 +5,7 @@ if (!localStorage.getItem("storedTasks")) {
 }
 
 const storedTasks = JSON.parse(localStorage.getItem("storedTasks")) || [];
+
 /**
  * Creates a single task DOM element.
  * @param {Object} task - Task data object.
@@ -107,18 +108,28 @@ function initTaskBoard() {
 
 const taskAddBtn = document.getElementById("task-add-btn");
 
+/**
+ * Event listener to open the new task modal when the 'add new task' button is clicked
+ */
 taskAddBtn.addEventListener("click",() => {
-  console.log('Yes');
   openNewTaskModal();
 })
 
 let nextTaskId = 6;
+
+/**
+ * Opens the modal for creating a new task
+ */
 
 function openNewTaskModal() {
   const newModal = document.getElementById("new-task-modal");
   newModal.showModal()
 }
 
+/**
+ * Handles new task form submission
+ * Updates the UI and adds the new task to localStorage
+ */
 function handleNewTaskSubmission () {
 
   const newTitleInput = document.getElementById("new-task-title");
@@ -150,7 +161,9 @@ function handleNewTaskSubmission () {
   renderTasks(storedTasks);
 }
 
-// Add new task by submitting
+/**
+ * Prevents default form submission and processes the new task submission logic
+ */
 document.getElementById("new-task-form").addEventListener("submit",(event) => {
   event.preventDefault();
   handleNewTaskSubmission();
