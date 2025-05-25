@@ -1,5 +1,4 @@
 import { clearExistingTasks, renderTasks } from "./render.js";
-import { saveTasks } from "./storage.js";
 
 export let storedTasks = [];
 let nextTaskId = 6;

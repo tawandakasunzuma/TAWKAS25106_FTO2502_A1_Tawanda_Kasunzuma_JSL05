@@ -122,15 +122,15 @@ header {
 }
 
 #task-add-btn {
-    background-color: #635FC7;
-    color: #ffffff;
-    border: none;
-    padding: 1em 1.5em;
-    font-size: 15px;
-    font-weight: 700;
-    border-radius: 1.5rem;
-    cursor: pointer;
-    margin-right: 1rem;
+  background-color: #635fc7;
+  color: #ffffff;
+  border: none;
+  padding: 1em 1.5em;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
 }
 
 /* ===============
@@ -261,7 +261,7 @@ dialog {
 #create-task-btn {
   font-weight: 700;
   font-size: 13px;
-  background-color: #635FC7;
+  background-color: #635fc7;
   color: #ffffff;
   border-radius: 1.25rem;
   width: 100%;
